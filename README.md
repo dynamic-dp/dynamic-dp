@@ -1,16 +1,13 @@
-### Hi there 👋
+### This is the code for dynamic dp
 
-<!--
-**dynamic-dp/dynamic-dp** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+To run the code, you should install opacus version 0.15.0 by
 
-Here are some ideas to get you started:
+pip install opacus==0.15.0
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+Then, to implement dynamic dp, you should replace the privacy_engine.py file in the opacus package by the one in the utils folder of this repo. Or, you can just copy and paste the last two functions in the 
+utils.privacy_engine.py: set_clip and set_unit_sigma into the opacus package.
+
+Then, you can just run the code simply by
+
+python dp_mnist.py
+
