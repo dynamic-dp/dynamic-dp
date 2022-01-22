@@ -86,8 +86,6 @@ mu_allocation = False, privacy_engine =None):
         for i in tqdm(range(int(1/args.sampling_rate))):
             data,target = poisson_sampler(train_dataset,args.sampling_rate)
             data, target = data.to(device), target.to(device)
-            optimizer = optim.SGD(model.parameters(), lr=args.lr, momentum=0)
-            data, target = data.to(device), target.to(device)
             optimizer.zero_grad()
             output = model(data)
             loss = criterion(output, target)
@@ -342,15 +340,17 @@ def main(dp = False, epsilon = None, sens_decay = False, mu_allocation = False,n
 if __name__ == "__main__":
     torch.manual_seed(42)
     np.random.seed(42)
-    #acc_no_dp = main(dp=False)
+    accs = []
+    acc_no_dp = main(dp=False)
     for ep in [0.4]:
-        # dr_sens = np.linspace(0.7,0.8,2)
-        # dr_mus = np.linspace(0.2,0.6,5)
-        dr_sens = [0.5]
-        dr_mus = [0.7]
+        dr_sens = np.linspace(0.1,0.7,4)
+        dr_mus = np.linspace(0.2,0.8,4)
+        # dr_sens = [0.5]
+        # dr_mus = [0.7]
         acc_dp = main(dp = True,epsilon = ep)
         for dr_sen in dr_sens:
             for dr_mu in dr_mus:
-                acc_dynamic_dp = main(dp = True , epsilon = ep,sens_decay=True, mu_allocation=True,decay_rate_sens=dr_sen,decay_rate_mu=dr_mu)
-    # print('Acc without dp: ',acc_no_dp,'Acc with dp: ',acc_dp,'Acc with dynamic dp: ',acc_dynamic_dp)
-    print('Acc with uniform dp: ',acc_dp,'Acc with dynamic dp: ',acc_dynamic_dp)
+                accs.append(main(dp = True , epsilon = ep,sens_decay=True, mu_allocation=True,decay_rate_sens=dr_sen,decay_rate_mu=dr_mu))
+    print('no_dp',acc_no_dp)
+    print('dp',acc_dp)
+    print(accs)
