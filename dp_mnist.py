@@ -353,4 +353,4 @@ if __name__ == "__main__":
                 accs.append(main(dp = True , epsilon = ep,sens_decay=True, mu_allocation=True,decay_rate_sens=dr_sen,decay_rate_mu=dr_mu))
     print('no_dp',acc_no_dp)
     print('dp',acc_dp)
-    print(accs)
+    print('dynamic dp',accs)
