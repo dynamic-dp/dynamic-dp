@@ -343,10 +343,10 @@ if __name__ == "__main__":
     accs = []
     acc_no_dp = main(dp=False)
     for ep in [0.4]:
-        dr_sens = np.linspace(0.1,0.7,4)
-        dr_mus = np.linspace(0.2,0.8,4)
-        # dr_sens = [0.5]
-        # dr_mus = [0.7]
+        # dr_sens = np.linspace(0.1,0.7,4)
+        # dr_mus = np.linspace(0.2,0.8,4)
+        dr_sens = [0.3]
+        dr_mus = [0.8]
         acc_dp = main(dp = True,epsilon = ep)
         for dr_sen in dr_sens:
             for dr_mu in dr_mus:
