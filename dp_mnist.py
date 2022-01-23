@@ -139,7 +139,7 @@ def main(dp = False, epsilon = None, sens_decay = False, mu_allocation = False,n
     iteration = int(epochs/sampling_rate)
     if epsilon:
         clipping_value = 1.5
-        delta = 1e-5
+        delta = 1.0/num_data
         mu = 1/calibrateAnalyticGaussianMechanism(epsilon = epsilon, delta  = delta, GS = 1, tol = 1.e-12)
         mu_t = math.sqrt(math.log(mu**2/(sampling_rate**2*iteration)+1))
         sigma = 1/mu_t
